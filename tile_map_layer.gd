@@ -7,6 +7,10 @@ extends TileMapLayer
 @export var atlas_arr = [Vector2i(7,9),Vector2i(18,5),Vector2i(17,6)]
 
 func _ready() -> void:
+	create_map()
+	
+func create_map() -> void:
+	noise.seed = randi() #Crea una semilla aleatoria
 	for i in range(100):
 		for j in range(100):
 			var x: float = i#randf_range(-50,50)
@@ -26,9 +30,3 @@ func _ready() -> void:
 				vect_to_use=atlas_arr[2]
 			#var newNode := BALL.instantiate()	
 			set_cell(Vector2i(x,y),0,vect_to_use)
-
-			#newNode.global_position = Vector3(x, height * height_sc, z)
-				
-				#if(rand_num<0):
-					#newNode.set_surface_override_material(0,material)
-			#add_child(newNode)

@@ -11,12 +11,12 @@ func _physics_process(delta: float) -> void:
 		navigation_agent_2d.is_target_reachable()
 	]
 	
-	manual_navigation()
+	#manual_navigation()
 	navigate(delta)
 
-func manual_navigation() -> void:
+func manual_navigation(position: Vector2) -> void:
 	if Input.is_action_just_pressed("set_target"):
-		navigation_agent_2d.target_position = get_global_mouse_position()
+		navigation_agent_2d.target_position = position
 
 func navigate(delta: float) -> void:
 	if navigation_agent_2d.is_navigation_finished():
