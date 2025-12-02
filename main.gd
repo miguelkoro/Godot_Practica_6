@@ -7,8 +7,8 @@ const PLAYER = preload("uid://dxj6qigga6jhd")
 
 var agent: Node2D
 var spawn: bool = false
-var destiny: bool = false
-
+var clickable: bool = true
+var noAccesible: bool = false
 var walkableCell: Vector2i = Vector2i(7,9)
 
 
@@ -17,15 +17,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("set_target"):
 		var mouse_global = get_global_mouse_position()#tile_map_layer.get_global_mouse_position()
 		var cell = tile_map_layer.local_to_map(mouse_global)
-		print(walkable_cell(cell))
-		if not walkable_cell(cell): #Comprobar si la celda se puede caminar
+		if not walkable_cell(cell) or not clickable: #Comprobar si la celda se puede caminar
 			return
-		if spawn and destiny:
+		if noAccesible:
 			recreate_map()
 		elif not spawn:
 			spawn_agent(mouse_global)
 		else:
 			set_agent_target(mouse_global)
+			clickable = false
 
 func walkable_cell(cell: Vector2i) -> bool:
 	var atlas = tile_map_layer.get_cell_atlas_coords(cell)
@@ -47,10 +47,18 @@ func set_agent_target(mouse_global: Vector2) -> void:
 	#var point = tile_map_layer.map_to_local(cell)
 	#agent.manual_navigation(mouse_global)
 	agent.manual_navigation(mouse_global)
-	destiny = true
 	
 func recreate_map() -> void:
 	agent.queue_free() #Elimino el player
-	destiny = false
 	spawn = false
+	clickable = true
+	noAccesible = false
 	tile_map_layer.create_map()
+
+func finished_walking() ->void:
+	recreate_map()
+	#pass
+	
+func no_accesible() -> void:
+	clickable = true
+	noAccesible = true

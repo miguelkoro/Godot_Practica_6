@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cpah5nayviwwa" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://defrvpnphpkdg" path="res://tile_map_layer.gd" id="1_ig7tw"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)])
@@ -133,7 +133,7 @@ texture = ExtResource("1_0xm2m")
 4:9/0 = 0
 6:9/0 = 0
 7:9/0 = 0
-7:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h2yge")
+7:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bvp3")
 8:9/0 = 0
 9:9/0 = 0
 10:9/0 = 0
@@ -165,7 +165,7 @@ sources/0 = SubResource("TileSetAtlasSource_h2yge")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0xm2m"]
 seed = 1
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["Scene"]]
 script = ExtResource("1_h2yge")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

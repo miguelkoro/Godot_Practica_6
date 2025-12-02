@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwp5yv8t55tmg" path="res://icon.svg" id="2_i3pqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lquwl"]
-radius = 1.0985583
+radius = 2.799563
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_onrkg")
@@ -19,7 +19,7 @@ scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(6.4400005, 6.28)
+scale = Vector2(6.319998, 6.28)
 shape = SubResource("CircleShape2D_lquwl")
 
 [node name="DebugLabel" type="Label" parent="."]

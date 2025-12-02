@@ -15,6 +15,14 @@ run/main_scene="uid://dht5xlvgk2ocl"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://GameManager.gd"
+
+[global_group]
+
+Scene=""
+
 [input]
 
 set_target={
