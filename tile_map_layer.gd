@@ -11,8 +11,8 @@ func _ready() -> void:
 	
 func create_map() -> void:
 	noise.seed = randi() #Crea una semilla aleatoria
-	for i in range(100):
-		for j in range(100):
+	for i in range(20):
+		for j in range(20):
 			var x: float = i#randf_range(-50,50)
 			var y: float = j#randf_range(-50,50)
 					
