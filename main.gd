@@ -5,11 +5,11 @@ const PLAYER = preload("uid://dxj6qigga6jhd")
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 
-var agent: Node2D
+var agent: Node2D #Jugador
 var spawn: bool = false
 var clickable: bool = true
-var noAccesible: bool = false
-var walkableCell: Vector2i = Vector2i(7,9)
+var noAccesible: bool = false #Para indicar si es accesible o no la ruta
+var walkableCell: Vector2i = Vector2i(7,9) #Celda por la que se puede andar
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -19,22 +19,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		var cell = tile_map_layer.local_to_map(mouse_global)
 		if not walkable_cell(cell) or not clickable: #Comprobar si la celda se puede caminar
 			return
-		if noAccesible:
+		if noAccesible: #si no es accesible y hacemos click, crea de nuevo el mapa
 			recreate_map()
-		elif not spawn:
+		elif not spawn: #Si aun no hemos spawneado, añadimos el jugador en la poisicion
 			spawn_agent(mouse_global)
 		else:
-			set_agent_target(mouse_global)
+			set_agent_target(mouse_global) #Si ya hay un jugador, ponemos el destino
 			clickable = false
 
 func walkable_cell(cell: Vector2i) -> bool:
-	var atlas = tile_map_layer.get_cell_atlas_coords(cell)
+	var atlas = tile_map_layer.get_cell_atlas_coords(cell) #Vemos si la celda de la coordenada es igual que la caminable
 	if atlas==walkableCell:		
 		return true
 	else: 
 		return false
 
-func spawn_agent(mouse_global: Vector2) -> void:
+func spawn_agent(mouse_global: Vector2) -> void: #Generamos al jugador y lo añadimos a la escena
 	agent = PLAYER.instantiate()
 	add_child(agent)
 	agent.global_position = mouse_global
@@ -59,6 +59,6 @@ func finished_walking() ->void:
 	recreate_map()
 	#pass
 	
-func no_accesible() -> void:
+func no_accesible() -> void: # se llama desde el singleton
 	clickable = true
 	noAccesible = true
